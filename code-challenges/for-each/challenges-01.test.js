@@ -43,10 +43,10 @@ const addNumbers = (num, arr, times, callback) => {
   // Solution code here...
   for (let i=0 ; i<times ; i++){
 
-    callback(arr.push(num));
+    callback(arr,num);
 
   }
-  return(arr);
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,10 +63,17 @@ Return the modified array.
 
 const removeOne = (num, arr) => {
   // Solution code here...
+  if (num % 3===2){
+    arr.pop();
+  }
 };
 
 const removeElements = (arr, callback) => {
   // Solution code here...
+  for(let i=0 ; i<arr.length ; i++){
+    callback(arr[i],arr);
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -77,6 +84,8 @@ Write a function named removeWithForEach that produces the same output as challe
 
 const removeWithForEach = (arr, callback) => {
   // Solution code here...
+  arr.forEach(index => callback(index,arr));
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -88,10 +97,17 @@ This function should use forEach again, but rather than taking in a callback as 
 
 This anonymous function should accept up to three arguments: the element, the index, and the array.
 ------------------------------------------------------------------------------------------------ */
+const anonymousFunc =(el,index, arr) =>
+      {if (index % 3===2){
+      arr.pop(el);}
+    };
 
 const removeWithAnon = (arr) => {
   // Solution code here...
-};
+    arr.forEach(index => anonymousFunc(el,index, arr));
+    return arr ;
+  };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
