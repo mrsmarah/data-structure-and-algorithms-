@@ -50,6 +50,7 @@ console.log(a) prints { fullName: 'Octavia Estelle Butler', yearBorn: 1947 }
 
 const addBirthYearProperty = (obj, year) => {
   // Solution code here...
+  obj.yearBorn = year;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,6 +68,9 @@ console.log(people[1].isAuthor) prints true
 
 const setStatusAsAuthor = (people) => {
   // Solution code here...
+  for (let i=0 ; i<people.length ; i++){
+      people[i].isAuthor= true ;
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -86,7 +90,9 @@ console.log(a) prints [1, 2, 3, 4]
 
 const append = (arr1, arr2) => {
   // Solution code here...
-
+  for (let i=0 ; i<arr2.length ; i++){
+  arr1.push(arr2[i]);
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
