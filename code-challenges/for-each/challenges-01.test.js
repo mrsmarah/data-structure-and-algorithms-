@@ -97,17 +97,16 @@ This function should use forEach again, but rather than taking in a callback as 
 
 This anonymous function should accept up to three arguments: the element, the index, and the array.
 ------------------------------------------------------------------------------------------------ */
-const anonymousFunc =(el,index, arr) =>
-      {if (index % 3===2){
-      arr.pop(el);}
-    };
-
 const removeWithAnon = (arr) => {
   // Solution code here...
-    arr.forEach(index => anonymousFunc(el,index, arr));
-    return arr ;
-  };
-
+  arr.forEach(
+    (element => {
+      if (element % 3 === 2) {
+        arr.pop();
+      }
+    }));
+  return arr;
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -128,6 +127,15 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   // Solution code here...
+  let newArr= [];
+  availableItems.forEach(
+    (element=>{
+      if(element.available===true){
+        newArr.push(element.name);
+      }
+    }
+  ));
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -143,9 +151,21 @@ Iterate over the array using forEach to determine the output based on several ru
 
 Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
-
 const fizzbuzz = (arr) => {
   // Solution code here...
+  let newArr = [];
+  arr.forEach(value => {
+    if (value % 15 === 0) {
+      newArr.push('Fizz Buzz')
+    } else if (value % 5 === 0) {
+      newArr.push('Buzz');
+    } else if (value % 3 === 0) {
+      newArr.push('Fizz');
+    } else {
+      newArr.push(value);
+    }
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
