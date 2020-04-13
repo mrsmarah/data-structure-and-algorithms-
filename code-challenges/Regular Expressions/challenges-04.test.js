@@ -58,7 +58,7 @@ Do not use the vertical bar (pipe) in your pattern.
 // Solution code here...
 const matchMonth = (input) =>
  /^([Oo]ct)(ober)?$/.test(input);
- 
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 Write a function named noPunctuation that contains a regular expression pattern to find all of the words that contain a space immediately at the end of the word. Return an array of all such words, still containing the space at the end.
@@ -89,9 +89,9 @@ Do not use the vertical bar (pipe) character.
 Hint: All of these words end with the letters "ells".
 ------------------------------------------------------------------------------------------------ */
 const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
-// const findShells = (str) => {
-  // Solution code here...
   const findShells = (str) => 
+    // Solution code here...
+
   str.match(/s\w*(ells)/g) !== null ? str.match(/s\w*(ells)/g) : [];
 
 /* ------------------------------------------------------------------------------------------------
