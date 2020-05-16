@@ -3,25 +3,22 @@
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
-Write a function named oddValues that, given an array of integers as input, uses filter to return an array containing only the odd integers.
+Write a function named oddValues that, given an array of integers as input,
+uses filter to return an array containing only the odd integers.
 
 For example, oddValues([1,2,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
   // Solution code here...
-  let y = arr.filter(x =>{
-    if (x % 2 === 1){
-        return 'odd';
-    }
-  }); 
-  return y ;
+  return arr.filter(val => (val%2 !==0));
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named filterStringsWithVowels that, given an array of strings as input, uses filter to return an array with only words that contain vowels.
+Write a function named filterStringsWithVowels that, given an array of strings as input,
+uses filter to return an array with only words that contain vowels.
 
 The callback function to filter should include or utilize a regular expression pattern.
 
@@ -31,42 +28,39 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 const filterStringsWithVowels = (arr) => {
   // Solution code here...
-  const s = /[AEIOUaeiou]/g; 
-  let y = arr.filter(x =>{
-    if (!!x.match(s) === true){
-        return x;
+  let vowels = ['a','e','o','i','u'];
+  return arr.filter(val => {
+    for(let i = 0 ; i<vowels.length;i++){
+      if(val.includes(vowels[i])) {
+        return true;
+      }
     }
-  }); 
-  return y ;
+  });
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-Write a function named notInFirstArray that, given two arrays as input, uses filter to return an array of all the elements in the second array that are not included in the first array.
+Write a function named notInFirstArray that, given two arrays as input,
+uses filter to return an array of all the elements in the second array that are not included in the first array.
 
 For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
-  let v = [];
-  arr.filter(x =>{
-    if(forbiddenValues.includes(x) === true){
-      return x;
-    }
-    else if(forbiddenValues.includes(x) !== true){
-     v.push(x);
-    }
-  })
-  return v;
+  return arr.filter(val => !forbiddenValues.includes(val));
 };
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named getBaseStatGreaterThan that, given the snorlaxData, below, and an integer as input, uses filter to return an array containing all stats with a baseStat greater than the integer.
+Write a function named getBaseStatGreaterThan that, given the snorlaxData, below,
+and an integer as input, uses filter to return an array containing all stats with a baseStat greater than the integer.
 
-For example, getBaseStatGreaterThan(snorlaxData.stats, 50) will return an array containing the 'special-defense' and 'special-attack' objects.
+For example, getBaseStatGreaterThan(snorlaxData.stats, 50) will return an array containing
+the 'special-defense' and 'special-attack' objects.
 ------------------------------------------------------------------------------------------------ */
 
 const snorlaxData = {
@@ -102,37 +96,29 @@ const snorlaxData = {
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
   // Solution code here...
-  let y = arr.filter(x =>{
-    if ((x.baseStat > minBaseStat)===true){
-      return x ;
-    }
-  }); 
-  return y;
+  return arr.filter(val => val.baseStat>minBaseStat);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
-Write a function named getStatName that is an extension of your getBaseStatGreaterThan function from challenge 4. For this function, extend your solution from challenge 4 to only return the name of the stat, rather than the entire stat object.
+Write a function named getStatName that is an extension of your getBaseStatGreaterThan function from challenge 4.
+For this function, extend your solution from challenge 4 to only return the name of the stat,
+rather than the entire stat object.
 
 For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 'special-attack'].
 ------------------------------------------------------------------------------------------------ */
 
 const getStatName = (arr, minBaseStat) => {
   // Solution code here...
-  let v =[];
-  let y = arr.filter(x =>{
-    if ((x.baseStat > minBaseStat)===true){
-      v.push(x.stat.name) ;
-    }
-  }); 
-  return v;
+  return arr.filter(val => val.baseStat>minBaseStat).map(e => e.stat.name);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named getCharactersWithoutChildren that, given the array of characters, below, uses filter to return an array of all characters without children.
+Write a function named getCharactersWithoutChildren that, given the array of characters, below,
+uses filter to return an array of all characters without children.
 ------------------------------------------------------------------------------------------------ */
 
 const characters = [
@@ -180,41 +166,25 @@ const characters = [
 
 const getCharactersWithoutChildren = (arr) => {
   // Solution code here...
-  let y = arr.filter(x =>{
-    if ((x.children)==undefined){
-      return x
-    }
-  }); 
-  return y;
+  return arr.filter(val => !val.children);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
-Write a function named evenOddNumericValues that, given an array as input, uses filter to remove any non-numeric values, then uses map to generate a new array containing the string 'even' or 'odd', depending on the original value.
+Write a function named evenOddNumericValues that, given an array as input,
+uses filter to remove any non-numeric values, then uses map to generate a new array containing the string 'even' or 'odd',
+depending on the original value.
 
 For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 'odd'].
 ------------------------------------------------------------------------------------------------ */
 
 const evenOddNumericValues = (arr) => {
   // Solution code here...
-  let v=[];
-  let y = arr.filter(x =>{
-    if (typeof(x) == 'number'){
-      v.push(x); 
-    }
-  }); 
-  // return v;
-  let y2 = v.map(x =>{
-    if (x%2 === 1){
-      return 'odd';
-    }
-    if (x%2 === 0){
-      return 'even';
-    }
-  }); 
-  return y2 ;
-  
+  return arr.filter(val => typeof(val)=== 'number').map(e =>{
+    if(e%2===0) return 'even';
+    return 'odd';
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------

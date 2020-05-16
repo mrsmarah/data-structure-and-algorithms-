@@ -3,22 +3,27 @@
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
 
-Write a function named countNumberOfElements that, given an array as input, uses reduce to count the number of elements in the array.
+Write a function named countNumberOfElements that, given an array as input,
+uses reduce to count the number of elements in the array.
 
 Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
-  let y = arr.reduce((acc,val)=>{
-    return acc = acc+1;
-  },0)
-  return y ;
+
+  return arr.reduce((acc,val) => {
+    if(val) acc++;
+    return acc;
+  },0);
+  // console.log(x);
 };
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named returnNames that, given the Star Wars data, below, uses reduce to return an array containing the names of the characters.
+Write a function named returnNames that, given the Star Wars data, below,
+uses reduce to return an array containing the names of the characters.
 ------------------------------------------------------------------------------------------------ */
 
 let starWarsData = [{
@@ -71,12 +76,14 @@ let starWarsData = [{
   gender: 'female'
 }];
 
-const returnNames = (arr) => 
+const returnNames = (arr) => {
   // Solution code here...
-  arr.reduce((acc,val) =>{
-    acc.push(val.name);  
+  return arr.reduce((acc,val) =>{
+    acc.push(val.name);
     return acc;
-  }, []);
+  },[]);
+};
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -85,15 +92,19 @@ Write a function named reversedString that takes in a string and returns a strin
 Note: You must use reduce for this challenge. You may not use the built-in .reverse() string method.
 ------------------------------------------------------------------------------------------------ */
 
-  const reversedString = (str) => 
+const reversedString = (str) => {
   // Solution code here...
-  str.split('').reduce((accumulator, currentValue) => 
-  currentValue + accumulator);
+  let arr = str.split('');
+  return arr.reduce((acc,val)=> {
+    return val+ acc ;
+  },'');
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named countNumberOfChildren that, given the array of characters, below, uses reduce to return the total number of children in the data set.
+Write a function named countNumberOfChildren that, given the array of characters, below,
+uses reduce to return the total number of children in the data set.
 ------------------------------------------------------------------------------------------------ */
 
 const characters = [
@@ -139,11 +150,17 @@ const characters = [
   },
 ];
 
-const countNumberOfChildren = (arr) => 
+const countNumberOfChildren = (arr) => {
   // Solution code here...
-  arr.reduce((accumulator, currentValue) => 
-  currentValue.children ? accumulator + currentValue.children.length : accumulator, 0);
-
+  return arr.reduce((acc,val)=>{
+    if(val.children){
+      val.children.forEach(() => {
+        acc++;
+      });
+    }
+    return acc;
+  },0);
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -155,19 +172,21 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
-  let contents = arr.reduce((acc, val) => {    
-  acc.sum += val;    
-  acc.count++;
-  return acc;  },
-   { count: 0, sum: 0 });  
-   return contents.sum / contents.count;
-  };
+  let x = arr.reduce((acc,val) => {
+    acc['count']++;
+    acc['sum']+=val;
+    return acc;
+  },{count: 0, sum: 0});
 
+
+  return x.sum/x.count;
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named countPrimeNumbers that, given an array elements as input, uses reduce to count the number of elements that are prime numbers.
+Write a function named countPrimeNumbers that, given an array elements as input,
+uses reduce to count the number of elements that are prime numbers.
 
 You are welcome to use the provided isPrime function.
 ------------------------------------------------------------------------------------------------ */
@@ -183,14 +202,17 @@ const isPrime = (value) => {
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
-  return arr.reduce((accumulator, current) => 
-  isPrime(current) ? accumulator + 1 : accumulator, 0);
+  return arr.reduce((acc,val) => {
+    if(isPrime(val)) acc++;
+    return acc;
+  },0);
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
-Write a function named extractState that, given the snorlaxData, below, uses reduce to return the object whose 'name' property matches the given string.
+Write a function named extractState that, given the snorlaxData, below,
+uses reduce to return the object whose 'name' property matches the given string.
 
 If the input array does not have a stat with that specific name, the function should return null.
 ------------------------------------------------------------------------------------------------ */
@@ -228,6 +250,10 @@ const snorlaxData = {
 
 const extractStat = (statName, arr) => {
   // Solution code here...
+  return arr.reduce((acc,val)=>{
+    if(val.stat.name === statName) acc=val;
+    return acc;
+  },{});
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -242,6 +268,11 @@ Write a function named extractChildren that, given the array of characters from 
 
 const extractChildren = (arr) => {
   // Solution code here...
+  return arr.filter(val => val.name.includes('a')).reduce((acc,val)=> {if(val.children) {
+    acc=[...acc,...val.children];
+  }
+  return acc;
+  },[]);
 };
 
 /* ------------------------------------------------------------------------------------------------
